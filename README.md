@@ -127,4 +127,4 @@ Topic: The impact of large language models on software engineering
 
 ## 👨‍💻 Author
 
-**Jubelin Joji** — Agentic AI Internship Week 2 Project
+**Jubelin Joji**
