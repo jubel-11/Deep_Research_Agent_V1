@@ -9,7 +9,7 @@ and self-reflection.
 | Skill | Implementation |
 |---|---|
 | **ReAct** | `agent/research_agent.py` — Thought → Action → Observation loop |
-| **Tools** | Tools | Web search (Tavily API) + Page reader + RAG store |
+| **Tools** | Web search (Tavily API) + Page reader + RAG store |
 | **Memory** | Findings, visited URLs, ReAct steps all tracked in `ResearchMemory` |
 | **RAG** | Research findings embedded in ChromaDB for semantic retrieval during writing |
 | **Structured Output** | Pydantic `ResearchReport` with typed sections, citations, scores |
