@@ -37,7 +37,9 @@ Action: <tool>("<arg>")
 
 Rules:
 - Do 1 search, read 2 pages, then synthesize
-- Never read the same URL twice"""
+- IMPORTANT: After reading a page, pick a DIFFERENT URL from the search results
+- Never call read_page with the same URL twice — check your previous steps
+- If a page returns empty content, immediately try the next URL from search results"""
 
 
 class DeepResearchAgent:
@@ -240,7 +242,7 @@ Use [1], [2] etc. to cite sources. Reply with ONLY valid JSON, no markdown."""
         OPTIMIZED: Only ~5-6 LLM calls total instead of 15-20.
         """
         print(f"\n{'='*60}")
-        print(f"  🔬 DEEP RESEARCH AGENT v1 (Optimized)")
+        print(f"  🔬 DEEP RESEARCH AGENT v1")
         print(f"  Topic: {topic}")
         print(f"  Model: {self.model_name}")
         print(f"{'='*60}")
@@ -288,9 +290,9 @@ Use [1], [2] etc. to cite sources. Reply with ONLY valid JSON, no markdown."""
             if action == "web_search" and arg:
                 memory.search_queries.append(arg)
                 results = web_search(arg, max_results=3)
-                obs = f"Found {len(results)} results:\n"
+                obs = f"Found {len(results)} results. You MUST read different URLs, not the same one:\n"
                 for i, r in enumerate(results, 1):
-                    obs += f"  {i}. {r['title'][:50]} — {r['url']}\n"
+                    obs += f"  {i}. {r['title']}\n     URL: {r['url']}\n     {r['snippet'][:100]}\n"
                 print(f"  👁️  {obs[:150]}...")
                 memory.add_step("observation", obs)
                 scratchpad += f"Action: web_search(\"{arg}\")\nResult: {obs}\n"
