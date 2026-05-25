@@ -9,7 +9,7 @@ and self-reflection.
 | Skill | Implementation |
 |---|---|
 | **ReAct** | `agent/research_agent.py` — Thought → Action → Observation loop |
-| **Tools** | Web search (DuckDuckGo) + Page reader + RAG store |
+| **Tools** | Tools | Web search (Tavily API) + Page reader + RAG store |
 | **Memory** | Findings, visited URLs, ReAct steps all tracked in `ResearchMemory` |
 | **RAG** | Research findings embedded in ChromaDB for semantic retrieval during writing |
 | **Structured Output** | Pydantic `ResearchReport` with typed sections, citations, scores |
@@ -76,7 +76,8 @@ source venv/bin/activate    # Mac/Linux
 pip install -r requirements.txt
 
 # 3. Add your Gemini API key
-echo GEMINI_API_KEY=your-key-here > .env
+GEMINI_API_KEY=your-gemini-key-here
+TAVILY_API_KEY=your-tavily-key-here
 
 # 4. Run
 python main.py
@@ -108,14 +109,14 @@ Topic: The impact of large language models on software engineering
   Sources  : 4
   Sections : 5
   Citations: 4
-  Score    : 7.8/10
+  Score    : 6.0/10
 ```
 
 ## 🔧 Technical Notes
 
 - **API**: Gemini API (substituted for OpenAI — identical architecture)
 - **Embeddings**: `gemini-embedding-001` via ChromaDB in-memory store
-- **Web search**: DuckDuckGo lite (free, no API key required)
+- **Web search**: Tavily API (free tier, 1,000 searches/month, built for AI agents)
 - **Report formats**: Markdown + HTML + JSON
 
 ## 📚 References
