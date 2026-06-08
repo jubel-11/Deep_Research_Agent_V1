@@ -1,7 +1,6 @@
 """
 Reflection Module
 The agent reviews its own report and scores it.
-Based on the Reflexion pattern from Week 1.
 
 After the report is written, the agent:
   1. Reads its own output
